@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>Web Chat: Full-featured bundle</title>
+
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+
+    <style>
+    html, body { height: 100% }
+    body {
+      margin: 0;
+      background-color: Black;
+	  background-image:url('Ref_57_Blog_840x442.png');
+	  background-size:100% 100%;
+	 
+
+	  }
+    #webchat {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  
+
+</head>
+<body>
+       <div id="webchat" role="main"></div>
+	   
+	  
+	   
+    <script>
+    (async function () {
+        const res = await fetch('https://directline.botframework.com/v3/directline/conversations', 
+            { method: 'POST', headers: { Authorization: 'Bearer _KJMoDiWJq0.lDw1xJcaxOadNEMAL0FZ9-czfv8soKyZ_YzgEKdD3t4' }});
+
+      const { token } = await res.json();
+
+      (async function () {
+	window.WebChat.renderWebChat({
+      directLine: window.WebChat.createDirectLine({ token }),
+      styleOptions: {
+        rootHeight: '100%',
+        rootWidth: '30%',
+		bubbleMaxWidth: 1000,               
+        botAvatarInitials: 'Bot',                
+        userAvatarInitials: 'User',  
+      }
+    }, document.getElementById('webchat'));
+    })()
+    })().catch(err => console.error(err));
+		
+   </script>
+</body>
+</html>
